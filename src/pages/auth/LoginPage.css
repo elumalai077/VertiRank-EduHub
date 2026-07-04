@@ -1,0 +1,442 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f5f7fb;
+  color: #1e293b;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* ==========================
+   Layout
+========================== */
+
+.auth-root {
+  display: flex;
+  min-height: 100vh;
+}
+
+.auth-left,
+.auth-right {
+  flex: 1;
+}
+
+.auth-left {
+  background: linear-gradient(135deg, #5b5cf6, #7d5fff);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.auth-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f9fc;
+  padding: 30px;
+}
+
+/* ==========================
+   Logo
+========================== */
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-logo-text {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ==========================
+   Illustration
+========================== */
+
+.auth-illustration {
+  height: 350px;
+  position: relative;
+}
+
+.illus-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+}
+
+.illus-c1 {
+  width: 260px;
+  height: 260px;
+  background: white;
+  top: 20px;
+  left: 20px;
+}
+
+.illus-c2 {
+  width: 180px;
+  height: 180px;
+  background: white;
+  right: 40px;
+  top: 100px;
+}
+
+.illus-c3 {
+  width: 100px;
+  height: 100px;
+  background: white;
+  bottom: 20px;
+  left: 180px;
+}
+
+.illus-cards {
+  position: absolute;
+  inset: 0;
+}
+
+.illus-card {
+  width: 220px;
+  background: white;
+  border-radius: 20px;
+  padding: 18px;
+  position: absolute;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.ic1 {
+  top: 30px;
+  left: 60px;
+  transform: rotate(-8deg);
+}
+
+.ic2 {
+  top: 120px;
+  right: 40px;
+  transform: rotate(8deg);
+}
+
+.ic3 {
+  bottom: 20px;
+  left: 120px;
+}
+
+.ic-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.ic-lines {
+  flex: 1;
+}
+
+.ic-line {
+  height: 10px;
+  background: #ececec;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+/* ==========================
+   Tagline
+========================== */
+
+.auth-tagline h2 {
+  font-size: 38px;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.auth-tagline p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ==========================
+   Card
+========================== */
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  border-radius: 24px;
+  padding: 45px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+}
+
+.auth-title {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  color: #64748b;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ==========================
+   Steps
+========================== */
+
+.auth-steps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.auth-step-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #d1d5db;
+  transition: 0.3s;
+}
+
+.auth-step-dot.active {
+  background: #6366f1;
+}
+
+.auth-step-line {
+  flex: 1;
+  height: 4px;
+  margin: 0 10px;
+  background: #e5e7eb;
+  border-radius: 20px;
+}
+
+.auth-step-line.filled {
+  background: #6366f1;
+}
+
+/* ==========================
+   Fields
+========================== */
+
+.auth-field {
+  margin-bottom: 22px;
+}
+
+.auth-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-field input {
+  width: 100%;
+  height: 54px;
+  border: 1px solid #dce3ee;
+  border-radius: 14px;
+  padding: 0 18px;
+  font-size: 15px;
+  transition: 0.25s;
+}
+
+.auth-field input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* ==========================
+   Button
+========================== */
+
+.auth-btn {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 14px;
+  background: #6366f1;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.auth-btn:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-btn.loading {
+  pointer-events: none;
+}
+
+/* ==========================
+   Spinner
+========================== */
+
+.auth-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================
+   OTP
+========================== */
+
+.otp-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.otp-box {
+  width: 55px;
+  height: 60px;
+  border-radius: 14px;
+  border: 1px solid #dce3ee;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  transition: 0.25s;
+}
+
+.otp-box:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* ==========================
+   Back & Resend
+========================== */
+
+.auth-back {
+  border: none;
+  background: none;
+  color: #6366f1;
+  cursor: pointer;
+  font-size: 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.auth-resend {
+  margin-top: 22px;
+  text-align: center;
+  color: #64748b;
+}
+
+.resend-link {
+  border: none;
+  background: none;
+  color: #6366f1;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.resend-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================
+   Messages
+========================== */
+
+.auth-message {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-message.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.auth-message.error {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 900px) {
+  .auth-root {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    padding: 20px;
+  }
+
+  .auth-card {
+    max-width: 420px;
+    padding: 35px;
+  }
+
+  .otp-box {
+    width: 48px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    padding: 25px;
+  }
+
+  .auth-title {
+    font-size: 28px;
+  }
+
+  .otp-grid {
+    gap: 8px;
+  }
+
+  .otp-box {
+    width: 42px;
+    height: 50px;
+    font-size: 20px;
+  }
+}

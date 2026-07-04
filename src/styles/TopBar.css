@@ -1,0 +1,436 @@
+/* TopBar Container */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 0 24px;
+  height: 70px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Left Section - Logo */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.logo span {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6C63FF 0%, #8B82FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+/* Center Section - User Info Card */
+.topbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.user-info-card {
+  display: flex;
+  gap: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 20px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.user-info-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(108, 99, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.2);
+}
+
+.user-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.info-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.info-value {
+  color: white;
+  font-weight: 600;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+/* Expiry Status Classes */
+.expiry-normal {
+  color: #4ade80 !important;
+}
+
+.expiry-warning {
+  color: #fbbf24 !important;
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+.expiry-critical {
+  color: #f87171 !important;
+  animation: pulse-critical 1s ease-in-out infinite;
+  font-weight: bold;
+}
+
+.expiry-expired {
+  color: #ef4444 !important;
+  text-decoration: line-through;
+  font-weight: bold;
+}
+
+.expiry-unknown {
+  color: #9ca3af !important;
+}
+
+/* Right Section - Avatar and Logout */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 200px;
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.5);
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.btn-logout:active {
+  transform: translateY(0);
+}
+
+.btn-logout svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Animations */
+@keyframes pulse-warning {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-critical {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 0 16px;
+  }
+  
+  .user-info-card {
+    gap: 15px;
+    padding: 6px 15px;
+  }
+  
+  .user-info-item {
+    font-size: 11px;
+  }
+  
+  .info-label {
+    display: none;
+  }
+  
+  .info-value {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    height: auto;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .topbar-left {
+    justify-content: center;
+  }
+  
+  .topbar-center {
+    width: 100%;
+  }
+  
+  .user-info-card {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .topbar-right {
+    justify-content: center;
+  }
+  
+  .logo span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-info-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-radius: 16px;
+  }
+  
+  .user-info-item {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .btn-logout span {
+    display: none;
+  }
+  
+  .btn-logout svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+/* Optional: Add a subtle gradient overlay on scroll */
+.topbar.scrolled {
+  background: linear-gradient(135deg, #0f0f1a 0%, #0a0a14 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip for expiry information */
+.user-info-item:last-child .info-value {
+  cursor: help;
+  position: relative;
+}
+
+.user-info-item:last-child .info-value:hover::after {
+  content: "Session will expire at this time";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1001;
+  pointer-events: none;
+}
+/* Add these styles to your existing CSS */
+
+/* Loading state for logout button */
+.btn-logout.loading,
+.btn-logout:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-logout.loading svg {
+  animation: spin 1s linear infinite;
+}
+
+.btn-logout:disabled:hover {
+  transform: none;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Spin animation for loading icon */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optional: Add a logout confirmation modal styles */
+.logout-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+.logout-confirm-modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+.logout-confirm-modal h3 {
+  color: white;
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.logout-confirm-modal p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.logout-confirm-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.logout-confirm-buttons button {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-confirm-logout {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-confirm-logout:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
