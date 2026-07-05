@@ -164,6 +164,7 @@ const TestListPage = () => {
   const countdownLabel = useCountdown(current);
 
   const normalizeStatus = (status) => (status || "").toLowerCase();
+  const isFinishedStatus = (status) => ["finished", "completed", "ended"].includes(normalizeStatus(status));
 
   const statusSummary = useMemo(() => {
     return data.reduce((acc, test) => {
@@ -307,22 +308,44 @@ const TestListPage = () => {
   const isUnit = (test) => test.testType === "unit";
 
   const canShowAnalytics = (test) => {
-    if (!["finished", "completed", "ended"].includes(normalizeStatus(test.status))) return false;
+    if (!isFinishedStatus(test.status)) return false;
 
     if (isUnit(test)) {
       return Boolean(
         test.ranklistgenerated &&
-          test.ranklistgeneratedbyBatch &&
-          test.ranklistgeneratedbyMonth &&
-          test.testAnalysis
+        test.ranklistgeneratedbyBatch &&
+        test.ranklistgeneratedbyMonth &&
+        test.testAnalysis
       );
     }
 
     return Boolean(test.ranklistgenerated && test.ranklistgeneratedRevision && test.testAnalysis);
   };
 
-  const showGenerateRanklist = (test) => ["finished", "completed", "ended"].includes(normalizeStatus(test.status)) && !canShowAnalytics(test);
+  const getMissingSteps = (test) => {
+    const missing = [];
 
+    if (!test.ranklistgenerated) missing.push("Rank list");
+
+    if (isUnit(test)) {
+      if (!test.ranklistgeneratedbyBatch) missing.push("Batch ranklist");
+      if (!test.ranklistgeneratedbyMonth) missing.push("Month ranklist");
+    } else if (!test.ranklistgeneratedRevision) {
+      missing.push("Revision ranklist");
+    }
+
+    if (!test.testAnalysis) missing.push("Question analysis");
+
+    return missing;
+  };
+
+  const incompleteFinishedTests = useMemo(() => {
+    return data
+      .filter((test) => isFinishedStatus(test.status) && !canShowAnalytics(test))
+      .map((test) => ({ ...test, missingSteps: getMissingSteps(test) }));
+  }, [data]);
+
+  const showGenerateRanklist = (test) => isFinishedStatus(test.status) && !canShowAnalytics(test);
   const postJson = async (path, body) => {
     const res = await fetch(`${API_BASE}/${path}`, {
       method: "POST",
@@ -792,6 +815,22 @@ const TestListPage = () => {
 
         {!isEmpty && (
           <>
+            {incompleteFinishedTests.length > 0 && (
+              <div style={styles.noticeBanner} role="alert">
+                <div style={styles.noticeTitle}>
+                  ⚠️ {incompleteFinishedTests.length} finished test{incompleteFinishedTests.length > 1 ? "s" : ""} still need setup
+                </div>
+                <div style={styles.noticeList}>
+                  {incompleteFinishedTests.map((test) => (
+                    <div key={test.testId} style={styles.noticeItem}>
+                      <strong>{test.testName || test.testId}</strong>
+                      <span>{test.missingSteps.join(" • ")}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div style={{
               ...styles.summaryCard,
               background: isDark ? '#1a1a2e' : '#FAFAFA',
@@ -1125,6 +1164,39 @@ const styles = {
     fontSize: 12.5,
     margin: 0,
     transition: "color 0.3s ease",
+  },
+
+  noticeBanner: {
+    marginBottom: 12,
+    padding: 12,
+    borderRadius: 12,
+    border: "1px solid #FECACA",
+    background: "#FEF2F2",
+    boxShadow: "0 2px 10px rgba(220, 38, 38, 0.08)",
+    position: "sticky",
+    top: 12,
+    zIndex: 20,
+  },
+
+  noticeTitle: {
+    fontSize: 12.5,
+    fontWeight: 700,
+    color: "#991B1B",
+    marginBottom: 6,
+  },
+
+  noticeList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
+  },
+
+  noticeItem: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+    fontSize: 11.5,
+    color: "#7F1D1D",
   },
 
   summaryCard: {

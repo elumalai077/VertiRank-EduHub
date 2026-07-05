@@ -144,6 +144,12 @@ export default function BatchSidebar() {
         path: `/batch/${batchId}/analytics`,
         description: "Performance insights",
       },
+      {
+        title: "Announcements",
+        icon: "📢"    ,
+        path: `/batch/${batchId}/announcement`,
+        description: "Batch announcements",
+      }
     ],
     [batchId, testCount, studentCount]
   );
@@ -216,7 +222,7 @@ export default function BatchSidebar() {
             {!collapsed ? (
               <div className="vr-brand-content">
                 <span className="vr-brand-icon">⚡</span>
-                <h2 className="vr-brand-title">VeriRank</h2>
+                <h2 className="vr-brand-title">VertiRank-EduHub</h2>
               </div>
             ) : (
               <span className="vr-brand-icon-small">⚡</span>
@@ -247,10 +253,7 @@ export default function BatchSidebar() {
             <div className="vr-batch-info">
               <h3 className="vr-batch-name">{batch.batchName || "Unnamed Batch"}</h3>
               <div className="vr-batch-meta">
-                <span className="vr-meta-item">
-                  <span className="vr-meta-icon" aria-hidden="true">👥</span>
-                  {studentCount} Students
-                </span>
+              
                 <span className="vr-meta-item">
                   <span className="vr-meta-icon" aria-hidden="true">📅</span>
                   {batch.createdAt?.split("T")[0] || "N/A"}

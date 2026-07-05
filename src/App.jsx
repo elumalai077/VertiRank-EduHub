@@ -17,6 +17,7 @@ import QuestionView from "./pages/tests/QuestionView";
 import AnalyticsPage from "./pages/tests/AnalyticsPage";
 import QuestionAnalytics from "./pages/tests/QuestionAnalytics";
 import SyllabusCreate from "./pages/batch/SyllabusCreate";
+import AnnouncementPage from "./pages/batch/Announcement";
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +34,7 @@ function App() {
         <Route path="/test/question/:testId" element={<QuestionView/>} />
         <Route path="/test/analytics/:testId" element={<AnalyticsPage/>} />
         <Route path="/test/question-details/:testId" element={<QuestionAnalytics/>} />
+
         {/* Batch Routes */}
         <Route path="/batch/:batchId" element={<BatchLayout />}>
           <Route index element={<BatchDetails />} />
@@ -42,6 +44,8 @@ function App() {
           <Route path="tests" element={<TestList />} />
           <Route path="students" element={<Students />} />
           <Route path="syllabus" element={<SyllabusCreate />} />
+          <Route path="announcement" element={<AnnouncementPage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
